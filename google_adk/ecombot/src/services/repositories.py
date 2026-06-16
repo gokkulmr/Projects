@@ -20,12 +20,9 @@ class OrdersRepository:
                 order_id,
                 customer_name,
                 status,
-                eta,
-                carrier,
-                tracking_number,
-                total_amount,
-                currency,
-                updated_at
+                product_id,
+                quantity,
+                created_at
             FROM orders
             WHERE order_id = %s
             """,
@@ -37,9 +34,7 @@ class OrdersRepository:
         updated = execute(
             """
             UPDATE orders
-            SET status = 'Cancelled',
-                eta = NULL,
-                updated_at = NOW()
+            SET status = 'Cancelled'
             WHERE order_id = %s
               AND status NOT IN ('Cancelled', 'Delivered')
             """,
@@ -58,18 +53,14 @@ class ProductsRepository:
             """
             SELECT
                 product_id,
-                product_name,
-                category,
+                name,
+                description,
                 price,
-                currency,
-                in_stock,
-                inventory_count,
-                is_active,
-                rating,
-                tags
+                stock,
+                active
             FROM products
-            WHERE product_name ILIKE %s
-            ORDER BY is_active DESC, in_stock DESC, rating DESC NULLS LAST, product_name ASC
+            WHERE name ILIKE %s
+            ORDER BY active DESC, stock DESC, name ASC
             LIMIT %s
             """,
             (pattern, limit),

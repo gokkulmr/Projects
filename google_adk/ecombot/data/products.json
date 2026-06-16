@@ -1,0 +1,108 @@
+[
+  {
+    "product_id": "PRD-101",
+    "name": "Wireless Headphones",
+    "category": "Audio",
+    "price": 2499.00,
+    "currency": "INR",
+    "description": "Premium noise-cancelling wireless headphones with 30-hour battery life.",
+    "specs": {
+      "driver_size": "40mm",
+      "frequency_response": "20Hz - 20kHz",
+      "bluetooth": "5.3",
+      "battery_life": "30 hours",
+      "charging": "USB-C, 10 min charge = 3 hrs playback",
+      "weight": "250g",
+      "noise_cancellation": "Active Noise Cancellation (ANC)",
+      "water_resistance": "IPX4"
+    },
+    "warranty": "1 year manufacturer warranty. Covers manufacturing defects. Does not cover physical damage, water damage beyond IPX4 rating, or normal wear and tear. Warranty claims must be filed within 30 days of discovering the defect.",
+    "shipping": "Free standard shipping (3-5 business days). Express shipping available for ₹199 (1-2 business days). Same-day delivery available in select cities for ₹299.",
+    "return_policy": "30-day return policy. Product must be in original packaging with all accessories. Refund processed within 5-7 business days after receiving the returned item.",
+    "in_box": ["Wireless Headphones", "USB-C charging cable", "3.5mm audio cable", "Carrying case", "User manual", "Warranty card"]
+  },
+  {
+    "product_id": "PRD-102",
+    "name": "Mechanical Keyboard",
+    "category": "Peripherals",
+    "price": 3999.00,
+    "currency": "INR",
+    "description": "TKL mechanical keyboard with RGB backlighting and red linear switches.",
+    "specs": {
+      "layout": "TKL (Tenkeyless, 87 keys)",
+      "switches": "Red linear mechanical switches",
+      "keycaps": "Double-shot PBT",
+      "backlighting": "Per-key RGB with 16.8 million colors",
+      "connection": "USB-C wired, detachable cable",
+      "polling_rate": "1000Hz",
+      "anti_ghosting": "Full N-key rollover",
+      "weight": "780g"
+    },
+    "warranty": "2 year manufacturer warranty. Covers switch failures, PCB defects, and LED malfunctions. Does not cover keycap wear, cable damage, or liquid spills.",
+    "shipping": "Free standard shipping (3-5 business days). Express shipping available for ₹199 (1-2 business days).",
+    "return_policy": "30-day return policy. Product must be unused and in original packaging. Opened keyboards can only be exchanged, not refunded, unless defective.",
+    "in_box": ["Mechanical Keyboard", "Detachable USB-C cable", "Keycap puller", "Extra keycaps (4)", "User manual"]
+  },
+  {
+    "product_id": "PRD-103",
+    "name": "USB-C Hub",
+    "category": "Accessories",
+    "price": 1299.00,
+    "currency": "INR",
+    "description": "7-in-1 USB-C hub with 100W Power Delivery passthrough.",
+    "specs": {
+      "ports": "1x HDMI 4K@60Hz, 2x USB-A 3.0, 1x USB-C 3.0, 1x USB-C PD 100W, 1x SD card, 1x microSD card",
+      "max_resolution": "4K@60Hz single display",
+      "power_delivery": "100W passthrough charging",
+      "data_transfer": "Up to 5Gbps (USB 3.0)",
+      "compatibility": "Windows, macOS, Linux, ChromeOS, iPadOS",
+      "weight": "85g",
+      "cable_length": "15cm integrated cable"
+    },
+    "warranty": "1 year manufacturer warranty. Covers port failures and power delivery issues. Does not cover cable damage or compatibility issues with unsupported devices.",
+    "shipping": "Free standard shipping (3-5 business days). Express shipping available for ₹149 (1-2 business days).",
+    "return_policy": "30-day return policy. Full refund if product is defective. For non-defective returns, product must be in original packaging.",
+    "in_box": ["USB-C Hub", "User manual", "Warranty card"]
+  },
+  {
+    "product_id": "PRD-104",
+    "name": "Webcam 4K",
+    "category": "Video",
+    "price": 5499.00,
+    "currency": "INR",
+    "description": "4K webcam with auto-focus, built-in dual microphone, and privacy shutter.",
+    "specs": {
+      "resolution": "4K Ultra HD (3840x2160) at 30fps, 1080p at 60fps",
+      "field_of_view": "90 degrees wide-angle",
+      "autofocus": "Yes, face-tracking autofocus",
+      "microphone": "Dual stereo microphones with noise reduction",
+      "privacy": "Physical privacy shutter",
+      "mount": "Universal clip mount + tripod mount (1/4 inch)",
+      "connection": "USB-C and USB-A (adapter included)",
+      "compatibility": "Windows 10+, macOS 10.15+, Linux, ChromeOS"
+    },
+    "warranty": "1 year manufacturer warranty. Covers sensor defects, autofocus failures, and microphone issues. Does not cover physical damage or software compatibility issues.",
+    "shipping": "Free standard shipping (3-5 business days). Express shipping available for ₹199 (1-2 business days). Fragile item — shipped in protective packaging.",
+    "return_policy": "30-day return policy. Product must be in original packaging. If privacy shutter seal is broken, only exchange is available.",
+    "in_box": ["Webcam 4K", "USB-C cable", "USB-A adapter", "Quick start guide", "Privacy cover"]
+  },
+  {
+    "product_id": "PRD-105",
+    "name": "Old Mouse",
+    "category": "Peripherals",
+    "price": null,
+    "currency": "INR",
+    "description": "Discontinued basic wired mouse. No longer available for purchase.",
+    "specs": {
+      "type": "Wired optical mouse",
+      "dpi": "800",
+      "buttons": "3 (left, right, scroll)",
+      "connection": "USB-A",
+      "note": "This product has been discontinued and is no longer in production."
+    },
+    "warranty": "No warranty available for discontinued products.",
+    "shipping": "This product is not available for shipping.",
+    "return_policy": "Returns not accepted for discontinued items.",
+    "in_box": ["Mouse", "USB cable"]
+  }
+]

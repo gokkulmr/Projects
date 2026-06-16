@@ -1,0 +1,110 @@
+[
+  {
+    "id": "faq-001",
+    "question": "What is the return policy?",
+    "answer": "We offer a 30-day return policy on all products. Items must be in their original packaging with all accessories included. Refunds are processed within 5-7 business days after we receive the returned item. For electronics, the product must be in unused or like-new condition. Opened products that are not defective may only be eligible for exchange.",
+    "category": "returns"
+  },
+  {
+    "id": "faq-002",
+    "question": "How do I cancel an order?",
+    "answer": "You can cancel an order as long as it has not been shipped yet. Orders with status 'Processing' can be cancelled immediately. Once an order is marked as 'Shipped', it cannot be cancelled — you will need to wait for delivery and then initiate a return. To cancel, provide your order ID (format: ORD-XXX) and we will process the cancellation.",
+    "category": "cancellation"
+  },
+  {
+    "id": "faq-003",
+    "question": "What are the shipping options?",
+    "answer": "We offer three shipping tiers: (1) Standard shipping is free and takes 3-5 business days. (2) Express shipping costs ₹199 and takes 1-2 business days. (3) Same-day delivery is available in select metro cities (Mumbai, Delhi, Bangalore, Chennai, Hyderabad) for ₹299 if ordered before 12 PM. All orders include tracking and insurance.",
+    "category": "shipping"
+  },
+  {
+    "id": "faq-004",
+    "question": "How do I track my order?",
+    "answer": "You can track your order by providing your order ID (format: ORD-XXX). Our system will show you the current status: Processing (order confirmed, being prepared), Shipped (in transit with carrier), Delivered (successfully delivered), or Cancelled (order was cancelled). For shipped orders, a tracking number from the carrier will be provided.",
+    "category": "tracking"
+  },
+  {
+    "id": "faq-005",
+    "question": "What payment methods do you accept?",
+    "answer": "We accept the following payment methods: Credit cards (Visa, Mastercard, American Express, RuPay), Debit cards, UPI (Google Pay, PhonePe, Paytm), Net Banking (all major banks), Wallets (Paytm, Amazon Pay, PhonePe), and Cash on Delivery (COD) for orders under ₹10,000. EMI options are available on select credit cards for orders above ₹3,000.",
+    "category": "payment"
+  },
+  {
+    "id": "faq-006",
+    "question": "How do I claim warranty?",
+    "answer": "To claim warranty: (1) Check your product's warranty period (usually 1-2 years from purchase). (2) Contact our support with your order ID and a description of the issue. (3) We will verify warranty eligibility. (4) If approved, we arrange free pickup and repair/replacement. (5) Repairs typically take 7-10 business days. Warranty does not cover physical damage, water damage (beyond rated protection), or normal wear and tear.",
+    "category": "warranty"
+  },
+  {
+    "id": "faq-007",
+    "question": "What if I receive a damaged item?",
+    "answer": "If you receive a damaged item: (1) Do not discard the packaging. (2) Take photos of the damage and the packaging. (3) Contact our support within 48 hours of delivery with your order ID, photos, and description. (4) We will arrange a free replacement or full refund. (5) A pickup will be scheduled for the damaged item. Damaged item claims must be filed within 48 hours of delivery.",
+    "category": "damaged"
+  },
+  {
+    "id": "faq-008",
+    "question": "Can I exchange a product?",
+    "answer": "Yes, exchanges are available within 30 days of delivery. The product must be in its original condition with all accessories and packaging. For exchanges: (1) Contact support with your order ID. (2) Specify the replacement product or variant. (3) We arrange pickup of the original item. (4) The replacement is shipped once we receive and inspect the original. Price differences are adjusted — you pay extra if the new item costs more, or receive a refund if it costs less.",
+    "category": "exchange"
+  },
+  {
+    "id": "faq-009",
+    "question": "Do you offer international shipping?",
+    "answer": "Currently, we only ship within India. International shipping is not available at this time. We are working on expanding to international markets. Please check back later for updates on international shipping availability.",
+    "category": "shipping"
+  },
+  {
+    "id": "faq-010",
+    "question": "How do I contact customer support?",
+    "answer": "You can reach our customer support through: (1) This chat assistant — available 24/7 for order tracking, cancellations, product information, and general queries. (2) Email: support@ecombot.in — response within 24 hours. (3) Phone: 1800-123-4567 (toll-free) — available Mon-Sat, 9 AM to 9 PM IST. (4) WhatsApp: +91-98765-43210 — available Mon-Sat, 9 AM to 6 PM IST.",
+    "category": "support"
+  },
+  {
+    "id": "faq-011",
+    "question": "What is your refund policy?",
+    "answer": "Refunds are processed for: cancelled orders (before shipping), returned items (within 30 days), and damaged/defective items. Refund timelines: UPI/Wallet — 1-2 business days. Credit/Debit card — 5-7 business days. Net Banking — 5-7 business days. COD orders — refund to bank account within 7-10 business days. Shipping charges are non-refundable unless the return is due to a defect or our error.",
+    "category": "refund"
+  },
+  {
+    "id": "faq-012",
+    "question": "Do you offer gift wrapping?",
+    "answer": "Yes, gift wrapping is available for ₹99 per item. You can add gift wrapping during checkout. Gift wrapping includes premium wrapping paper, a ribbon, and a personalized message card (up to 150 characters). Gift wrapping is not available for same-day delivery orders.",
+    "category": "services"
+  },
+  {
+    "id": "faq-013",
+    "question": "What if my order is delayed?",
+    "answer": "If your order is delayed beyond the estimated delivery date: (1) Check the latest status using your order ID. (2) Delays can occur due to weather, high demand, or carrier issues. (3) If the delay exceeds 3 business days beyond the estimated date, contact support for a shipping upgrade or discount. (4) For critical delays exceeding 7 business days, you are eligible for a full refund or free express re-shipment.",
+    "category": "shipping"
+  },
+  {
+    "id": "faq-014",
+    "question": "Can I change my delivery address after placing an order?",
+    "answer": "Address changes are possible only if the order status is still 'Processing'. Once an order is 'Shipped', the delivery address cannot be changed. To request an address change, contact support with your order ID and the new delivery address. Address changes may add 1-2 business days to the delivery timeline.",
+    "category": "shipping"
+  },
+  {
+    "id": "faq-015",
+    "question": "Do you price match?",
+    "answer": "We do not offer price matching with other retailers. However, if the price of a product drops on our store within 7 days of your purchase, you can contact support for a price adjustment. The difference will be refunded to your original payment method. This policy applies only to purchases made at full price, not to sale or promotional items.",
+    "category": "pricing"
+  },
+  {
+    "id": "faq-016",
+    "question": "Is Cash on Delivery available?",
+    "answer": "Cash on Delivery (COD) is available for orders under ₹10,000. COD orders require address verification and may take an additional 1 business day to process. A ₹49 COD handling fee applies. COD is not available for same-day delivery orders. If you are unavailable during delivery, the carrier will attempt delivery up to 3 times before returning the order.",
+    "category": "payment"
+  },
+  {
+    "id": "faq-017",
+    "question": "How do I reset my account password?",
+    "answer": "To reset your password: (1) Go to the login page and click 'Forgot Password'. (2) Enter your registered email address. (3) Check your email for a password reset link (valid for 1 hour). (4) Click the link and set a new password. (5) If you don't receive the email, check your spam folder or contact support. For security, we cannot share or reset passwords over chat or phone.",
+    "category": "account"
+  },
+  {
+    "id": "faq-018",
+    "question": "What are your store hours?",
+    "answer": "Our online store is available 24/7. Customer support hours are: Chat — 24/7 (automated assistant). Phone — Mon-Sat, 9 AM to 9 PM IST. Email — 24/7 (response within 24 hours). WhatsApp — Mon-Sat, 9 AM to 6 PM IST. Warehouse operations run Mon-Sat, 8 AM to 8 PM IST, which affects order processing times for orders placed on Sundays.",
+    "category": "support"
+  }
+]

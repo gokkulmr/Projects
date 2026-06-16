@@ -40,13 +40,26 @@ def lookup_product(product_name: str, tool_context: ToolContext | None = None) -
             "query": query,
         }
 
+    # Serialize Decimal / datetime objects for JSON-safe tool output
+    safe_rows = []
+    for row in rows:
+        safe = {}
+        for k, v in row.items():
+            if hasattr(v, "isoformat"):
+                safe[k] = v.isoformat()
+            elif hasattr(v, "as_integer_ratio") and not isinstance(v, (int, float, bool)):
+                safe[k] = float(v)
+            else:
+                safe[k] = v
+        safe_rows.append(safe)
+
     if tool_context is not None:
-        tool_context.state["current_product_id"] = rows[0].get("product_id")
+        tool_context.state["current_product_id"] = safe_rows[0].get("product_id")
         tool_context.state["last_lookup_key"] = query
         tool_context.state["last_intent"] = "product_lookup"
 
     return {
         "ok": True,
         "query": query,
-        "results": rows,
+        "results": safe_rows,
     }

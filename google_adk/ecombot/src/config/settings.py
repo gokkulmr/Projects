@@ -87,3 +87,12 @@ def postgres_dsn() -> str:
 
 REDIS_URL = redis_url()
 POSTGRES_DSN = postgres_dsn()
+
+
+# -----------------------
+# ChromaDB Config (RAG)
+# -----------------------
+CHROMA_PERSIST_DIR = Path(
+    _env("CHROMA_PERSIST_DIR", str(PROJECT_ROOT / ".chromadb"))
+)
+CHROMA_COLLECTION_NAME = _env("CHROMA_COLLECTION_NAME", "ecombot_kb")

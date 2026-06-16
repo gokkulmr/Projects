@@ -48,6 +48,7 @@ with open(instruction_file, "r", encoding="utf-8") as f:
 # -----------------------
 from tools.order_tools import get_order_status, cancel_order
 from tools.product_tools import lookup_product
+from tools.knowledge_tools import search_knowledge_base
 from services.session_service import create_session_service
 
 # -----------------------
@@ -67,7 +68,7 @@ agent = LlmAgent(
         api_base=LLM_BASE_URL        # <-- Force it to use the OpenRouter URL
     ),
     instruction=DEFAULT_INSTRUCTION,
-    tools=[get_order_status, cancel_order, lookup_product],
+    tools=[get_order_status, cancel_order, lookup_product, search_knowledge_base],
 )
 
 APP_NAME = "ecom-support-agent"

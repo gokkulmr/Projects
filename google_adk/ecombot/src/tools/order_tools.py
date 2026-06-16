@@ -25,7 +25,7 @@ def get_order_status(order_id: str, tool_context: ToolContext | None = None) -> 
         return {"ok": False, "error": "Invalid order ID format. Expected format: ORD-XXX"}
 
     try:
-        query = "SELECT order_id, status, eta, carrier FROM orders WHERE order_id = %s"
+        query = "SELECT order_id, customer_name, status, product_id, quantity, created_at FROM orders WHERE order_id = %s"
         row = fetch_one(query, (order_id,))
     except DatabaseServiceError:
         return {"ok": False, "error": "Order service is temporarily unavailable."}
@@ -33,13 +33,23 @@ def get_order_status(order_id: str, tool_context: ToolContext | None = None) -> 
     if not row:
         return {"ok": False, "error": f"Order {order_id} not found."}
 
+    # Serialize datetime / Decimal objects for JSON-safe tool output
+    safe_row = {}
+    for k, v in row.items():
+        if hasattr(v, "isoformat"):
+            safe_row[k] = v.isoformat()
+        elif hasattr(v, "as_integer_ratio"):  # Decimal
+            safe_row[k] = float(v)
+        else:
+            safe_row[k] = v
+
     if tool_context is not None:
         tool_context.state["last_order_id"] = order_id
         tool_context.state["last_intent"] = "order_lookup"
 
     return {
         "ok": True,
-        "results": row,
+        "results": safe_row,
     }
 
 
