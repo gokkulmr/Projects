@@ -1,0 +1,52 @@
+services:
+  redis:
+    image: redis:7.4-alpine
+    container_name: adk_redis
+    restart: unless-stopped
+    command:
+      - sh
+      - -c
+      - |
+        redis-server \
+          --requirepass "${REDIS_PASSWORD:-change_me_redis_password}" \
+          --appendonly yes \
+          --appendfsync everysec \
+          --save 60 1000
+    ports:
+      - "${REDIS_PORT:-6380}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli -a "${REDIS_PASSWORD:-change_me_redis_password}" ping | grep -q PONG
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: adk_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-adk_app}
+      POSTGRES_USER: ${POSTGRES_USER:-adk_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_postgres_password}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/scripts:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "${POSTGRES_USER:-adk_user}" -d "${POSTGRES_DB:-adk_app}" -h 127.0.0.1 -p 5432
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  redis_data:
+  postgres_data:

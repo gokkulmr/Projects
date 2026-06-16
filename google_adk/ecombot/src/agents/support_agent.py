@@ -15,11 +15,13 @@ from google.genai import types
 from tools.order_tools import get_order_status
 
 from config.settings import (
-    MODEL,
-    AGENT_NAME,
-    APP_NAME,
+    LLM_MODEL,
+    LLM_BASE_URL,         
     OPENROUTER_API_KEY,
 )
+
+# Force the API key into the environment for LiteLLM
+os.environ["OPENROUTER_API_KEY"] = OPENROUTER_API_KEY
 
 # -----------------------
 # Logging cleanup
@@ -44,23 +46,38 @@ with open(instruction_file, "r", encoding="utf-8") as f:
 # -----------------------
 # Session + Runner
 # -----------------------
-session_service = InMemorySessionService()
+from tools.order_tools import get_order_status, cancel_order
+from tools.product_tools import lookup_product
+from services.session_service import create_session_service
+
+# -----------------------
+# Session + Runner
+# -----------------------
+# Use your newly created Redis-backed session factory!
+session_service = create_session_service()
 
 USER_ID = "user-1"
 SESSION_ID = "session-1"
 
 agent = LlmAgent(
-    name=AGENT_NAME,
-    model=LiteLlm(model=MODEL),
+    name="ecommerce_support_agent",
+    model=LiteLlm(
+        model=LLM_MODEL,
+        api_key=OPENROUTER_API_KEY,  # <-- Force it to use the key
+        api_base=LLM_BASE_URL        # <-- Force it to use the OpenRouter URL
+    ),
     instruction=DEFAULT_INSTRUCTION,
-    tools=[get_order_status],
+    tools=[get_order_status, cancel_order, lookup_product],
 )
+
+APP_NAME = "ecom-support-agent"
 
 runner = Runner(
     agent=agent,
     app_name=APP_NAME,
     session_service=session_service,
 )
+
 
 # -----------------------
 # IMPORTANT: create session
@@ -90,7 +107,11 @@ async def ask_ecom(question: str) -> str:
         new_message=msg,
     ):
         if event.is_final_response():
-            response = event.content.parts[0].text or ""
+            # Safely check if content and parts exist before reading
+            if event.content and event.content.parts:
+                response = event.content.parts[0].text or ""
+            else:
+                response = "I encountered an internal error. Please try again."
 
     return response.strip()
 
