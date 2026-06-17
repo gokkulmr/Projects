@@ -9,15 +9,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from google.adk.agents import LlmAgent
 from google.adk.models.lite_llm import LiteLlm
 from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionService
 from google.genai import types
-
-from tools.order_tools import get_order_status
 
 from config.settings import (
     LLM_MODEL,
     LLM_BASE_URL,         
     OPENROUTER_API_KEY,
+    LITELLM_PROXY_ENABLED,
+    MCP_ENABLED,
 )
 
 # Force the API key into the environment for LiteLLM
@@ -46,29 +45,58 @@ with open(instruction_file, "r", encoding="utf-8") as f:
 # -----------------------
 # Session + Runner
 # -----------------------
+from services.session_service import create_session_service
+
+# Gateway routing
+from gateway.proxy_client import GatewayClient
+from gateway.router import QueryRouter
+
+# Tools
 from tools.order_tools import get_order_status, cancel_order
 from tools.product_tools import lookup_product
 from tools.knowledge_tools import search_knowledge_base
-from services.session_service import create_session_service
+from tools.mcp_order_tools import mcp_get_order_status, mcp_get_order_details, mcp_cancel_order, mcp_check_stock, mcp_list_variants
 
-# -----------------------
-# Session + Runner
-# -----------------------
-# Use your newly created Redis-backed session factory!
+# Select tools based on MCP enabled flag
+if MCP_ENABLED:
+    tools_list = [
+        mcp_get_order_status,
+        mcp_get_order_details,
+        mcp_cancel_order,
+        mcp_check_stock,
+        mcp_list_variants,
+        search_knowledge_base
+    ]
+else:
+    tools_list = [
+        get_order_status, 
+        cancel_order, 
+        lookup_product, 
+        search_knowledge_base
+    ]
+
+# Select model based on Gateway enabled flag
+if LITELLM_PROXY_ENABLED:
+    gateway_client = GatewayClient()
+    llm_model = gateway_client.create_gateway_model()
+    query_router = QueryRouter()
+else:
+    llm_model = LiteLlm(
+        model=LLM_MODEL,
+        api_key=OPENROUTER_API_KEY,
+        api_base=LLM_BASE_URL
+    )
+    query_router = None
+
 session_service = create_session_service()
-
 USER_ID = "user-1"
 SESSION_ID = "session-1"
 
 agent = LlmAgent(
     name="ecommerce_support_agent",
-    model=LiteLlm(
-        model=LLM_MODEL,
-        api_key=OPENROUTER_API_KEY,  # <-- Force it to use the key
-        api_base=LLM_BASE_URL        # <-- Force it to use the OpenRouter URL
-    ),
+    model=llm_model,
     instruction=DEFAULT_INSTRUCTION,
-    tools=[get_order_status, cancel_order, lookup_product, search_knowledge_base],
+    tools=tools_list,
 )
 
 APP_NAME = "ecom-support-agent"
@@ -94,6 +122,14 @@ async def init_session():
 # Ask function
 # -----------------------
 async def ask_ecom(question: str) -> str:
+    # 1. Day 7 Routing: classify intent if Gateway is enabled
+    route_hint = None
+    if LITELLM_PROXY_ENABLED and query_router:
+        decision = query_router.classify(question)
+        route_hint = decision.route_hint
+        # We can pass route_hint to Litellm via metadata but Google ADK doesn't expose it directly yet
+        # So we log it and gateway client handles it internally where possible
+        print(f"[{decision.route_hint} route selected: {decision.reasoning}]")
 
     msg = types.Content(
         role="user",
@@ -120,12 +156,14 @@ async def ask_ecom(question: str) -> str:
 # Chat loop
 # -----------------------
 async def chat():
-
-    # 🔥 FIX: session must exist before first call
     await init_session()
 
     print("\n====================================")
     print(" E-commerce Support Agent")
+    if LITELLM_PROXY_ENABLED:
+        print(" [Gateway Routing Enabled]")
+    if MCP_ENABLED:
+        print(" [FastMCP External Tools Enabled]")
     print("====================================")
     print("Type 'exit' to quit\n")
 

@@ -1,0 +1,51 @@
+# -----------------------------------------------------------
+# LiteLLM Proxy Configuration — eComBot Gateway
+# -----------------------------------------------------------
+# Start the proxy:
+#   litellm --config src/gateway/litellm_config.yaml
+#
+# Two model groups:
+#   fast-faq    → lightweight model for simple FAQ / status queries
+#   deep-support→ capable model for complex multi-step support
+# -----------------------------------------------------------
+
+model_list:
+  # ── fast-faq ──────────────────────────────────────────────
+  - model_name: fast-faq
+    litellm_params:
+      model: openrouter/google/gemini-2.0-flash
+      api_key: os.environ/OPENROUTER_API_KEY
+      api_base: https://openrouter.ai/api/v1
+      timeout: 15
+      max_retries: 2
+
+  # ── deep-support ──────────────────────────────────────────
+  - model_name: deep-support
+    litellm_params:
+      model: openrouter/google/gemini-2.5-flash
+      api_key: os.environ/OPENROUTER_API_KEY
+      api_base: https://openrouter.ai/api/v1
+      timeout: 30
+      max_retries: 2
+
+# ── Fallback chain ────────────────────────────────────────
+# If fast-faq fails (rate-limit, timeout, 5xx), retry on deep-support.
+litellm_settings:
+  fallbacks:
+    - fast-faq: ["deep-support"]
+  num_retries: 2
+  request_timeout: 30
+  drop_params: true          # silently drop unsupported params
+  set_verbose: false
+
+# ── Router settings ───────────────────────────────────────
+router_settings:
+  routing_strategy: simple-shuffle   # round-robin within a group
+  num_retries: 2
+  timeout: 30
+  retry_after: 5                     # seconds between retries
+  allowed_fails: 2                   # mark endpoint unhealthy after N fails
+
+# ── General proxy settings ────────────────────────────────
+general_settings:
+  master_key: os.environ/LITELLM_PROXY_API_KEY   # optional auth

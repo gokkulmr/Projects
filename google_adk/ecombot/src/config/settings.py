@@ -96,3 +96,41 @@ CHROMA_PERSIST_DIR = Path(
     _env("CHROMA_PERSIST_DIR", str(PROJECT_ROOT / ".chromadb"))
 )
 CHROMA_COLLECTION_NAME = _env("CHROMA_COLLECTION_NAME", "ecombot_kb")
+
+
+# -----------------------
+# LiteLLM Gateway Config
+# -----------------------
+LITELLM_PROXY_ENABLED = _env_bool("LITELLM_PROXY_ENABLED", False)
+LITELLM_PROXY_URL = _env("LITELLM_PROXY_URL", "http://localhost:4000")
+LITELLM_PROXY_API_KEY = _env("LITELLM_PROXY_API_KEY", "")
+LITELLM_FAST_MODEL = _env("LITELLM_FAST_MODEL", "fast-faq")
+LITELLM_DEEP_MODEL = _env("LITELLM_DEEP_MODEL", "deep-support")
+LITELLM_FALLBACK_ENABLED = _env_bool("LITELLM_FALLBACK_ENABLED", True)
+LITELLM_MAX_RETRIES = _env_int("LITELLM_MAX_RETRIES", 2)
+LITELLM_TIMEOUT_SECONDS = float(os.getenv("LITELLM_TIMEOUT_SECONDS", "30"))
+
+
+# -----------------------
+# FastMCP Config
+# -----------------------
+MCP_ORDERS_HOST = _env("MCP_ORDERS_HOST", "127.0.0.1")
+MCP_ORDERS_PORT = _env_int("MCP_ORDERS_PORT", 8001)
+MCP_INVENTORY_HOST = _env("MCP_INVENTORY_HOST", "127.0.0.1")
+MCP_INVENTORY_PORT = _env_int("MCP_INVENTORY_PORT", 8002)
+MCP_TIMEOUT_SECONDS = float(os.getenv("MCP_TIMEOUT_SECONDS", "10"))
+MCP_ENABLED = _env_bool("MCP_ENABLED", False)
+
+
+
+# -----------------------
+# LiteLLM Gateway Config
+# -----------------------
+LITELLM_PROXY_ENABLED = _env_bool("LITELLM_PROXY_ENABLED", False)
+LITELLM_PROXY_URL = _env("LITELLM_PROXY_URL", "http://localhost:4000")
+LITELLM_PROXY_API_KEY = _env("LITELLM_PROXY_API_KEY", "")
+LITELLM_FAST_MODEL = _env("LITELLM_FAST_MODEL", "fast-faq")
+LITELLM_DEEP_MODEL = _env("LITELLM_DEEP_MODEL", "deep-support")
+LITELLM_FALLBACK_ENABLED = _env_bool("LITELLM_FALLBACK_ENABLED", True)
+LITELLM_MAX_RETRIES = _env_int("LITELLM_MAX_RETRIES", 2)
+LITELLM_TIMEOUT_SECONDS = float(os.getenv("LITELLM_TIMEOUT_SECONDS", "30"))
