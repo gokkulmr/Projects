@@ -12,3 +12,4 @@ chromadb>=1.0.0
 pypdf>=4.0.0
 fastmcp>=2.0.0
 httpx>=0.28.0
+chainlit>=2.0.0
